@@ -1,0 +1,22 @@
+<div id="add-video-popup" class="popup-container">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2 class="text-center" id="popup-title">Create new video</h2>
+    <form id="add-upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="video-file">Upload Video</label>
+        <input type="file" id="video-file" name="video" accept="video/*" required />
+      </div>
+      <div class="form-group">
+        <label for="thumbnail-file">Upload Thumbnail</label>
+        <input type="file" id="thumbnail-file" name="thumbnail" accept="image/*" required />
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter video title" required />
+      </div>
+      <button type="submit" class="primary-btn w-100 mb-2">Submit</button>
+      <button class="secondary-btn w-100" onclick="closePopup()">Cancel</button>
+    </form>
+  </div>
+</div>

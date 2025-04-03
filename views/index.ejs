@@ -1,0 +1,13 @@
+<main class="home-main-container">
+  <h1 class="visually-hidden">Video player application</h1>
+  <div class="main-container">
+    <div class="video-cards-grid">
+      <% videos.forEach(video => { %> <%- include('partials/video-card', { video }) %> <% }); %>
+    </div>
+
+    <button onclick="openAddVideoPopup()" class="primary-btn">
+      <img src="/images/icons/add-icon.svg" /> Add new video
+    </button>
+    <%- include('partials/add-popup') %> <%- include('partials/update-popup') %>
+  </div>
+</main>

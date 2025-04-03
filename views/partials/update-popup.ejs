@@ -1,0 +1,24 @@
+<div id="update-video-popup" class="popup-container">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2 class="text-center" id="popup-title">Update video</h2>
+    <form id="update-upload-form" action="/upload" method="PUT" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="update-video-file">Upload Video</label>
+        <input type="file" id="update-video-file" name="video" accept="video/*" />
+        <div class="current-file-name" id="current-video-name"></div>
+      </div>
+      <div class="form-group">
+        <label for="update-thumbnail-file">Upload Thumbnail</label>
+        <input type="file" id="update-thumbnail-file" name="thumbnail" accept="image/*" />
+        <div class="current-file-name" id="current-thumbnail-name"></div>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="update-title" name="title" placeholder="Enter video title" required />
+      </div>
+      <button type="submit" class="primary-btn w-100 mb-2">Submit</button>
+      <button class="secondary-btn w-100" onclick="closePopup()">Cancel</button>
+    </form>
+  </div>
+</div>

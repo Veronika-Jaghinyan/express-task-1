@@ -1,0 +1,24 @@
+<div class="video-card">
+  <a href="/<%= video.id %>">
+    <video
+      title="<%= video.title %>"
+      class="video"
+      id="<%= video.id %>"
+      src="/uploads/videos/<%= video.src %>"
+      poster="/uploads/thumbnails/<%= video.thumbnail %>"
+      preload="metadata"
+      loading="eager"
+    ></video>
+    <div class="video-card-footer">
+      <h2 class="video-title"><%= video.title %></h2>
+      <div class="action-btns">
+        <button onclick="openUpdateVideoPopup(event, '<%= video.id %>')">
+          <img src="/images/icons/edit-icon.svg" alt="edit-icon" />
+        </button>
+        <button onclick="handleDeleteVideo(event, '<%= video.id %>')">
+          <img src="/images/icons/delete-icon.svg" alt="delete-icon" />
+        </button>
+      </div>
+    </div>
+  </a>
+</div>
