@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { getVideoDurationInSeconds } from 'get-video-duration';
+import deleteFile from '../utils/file-delete.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -93,6 +94,20 @@ export const updateVideo = (req, res) => {
   const thumbnail = req.files['thumbnail'] ? req.files['thumbnail'][0].filename : null;
   const size = req.files['video'] ? req.files['video'][0].size : null;
 
+  // Delete previous video files if updated
+  if (src) {
+    const videoPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'videos', video.src);
+
+    deleteFile(videoPath);
+  }
+
+  // Delete previous thumbnail files if updated
+  if (thumbnail) {
+    const thumbnailPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'thumbnails', video.thumbnail);
+
+    deleteFile(thumbnailPath);
+  }
+
   if (video) {
     videos = videos.map(v => {
       if (v.id === videoId) {
@@ -125,13 +140,8 @@ export const deleteVideo = (req, res) => {
     const videoPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'videos', video.src);
     const thumbnailPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'thumbnails', video.thumbnail);
 
-    fs.unlink(videoPath, error => {
-      if (error) console.error('Error deleting file:', error);
-    });
-
-    fs.unlink(thumbnailPath, error => {
-      if (error) console.error('Error deleting file:', error);
-    });
+    deleteFile(videoPath);
+    deleteFile(thumbnailPath);
 
     res.status(201).json({ msg: 'Video has been successfully deleted' });
   } else {

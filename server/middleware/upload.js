@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const prefix = file.fieldname === 'video' ? 'video' : 'thumbnail';
-    const ind = req.method === 'PUT' ? req.params.id : Date.now();
+    const ind = Date.now();
     const ext = path.extname(file.originalname);
     cb(null, `${prefix}-${ind}${ext}`);
   },
